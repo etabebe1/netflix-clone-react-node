@@ -16,21 +16,22 @@ function Signup() {
   });
   const navigate = useNavigate();
 
-  console.log(formValues)
-
-
   const handleSignIn = async () => {
-    try {
-      const { email, password } = formValues;
-      await createUserWithEmailAndPassword(firebaseAuth, email, password);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+    const { email, password } = formValues;
 
-  onAuthStateChanged(firebaseAuth, (currentUser) => {
-    if (currentUser) navigate("/");
-  });
+    createUserWithEmailAndPassword(firebaseAuth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log("User created successfully with email:", user.email);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+        console.error("Error signing up:", errorMessage);
+      });
+  };
 
   return (
     <Container showPassword={showPassword}>
