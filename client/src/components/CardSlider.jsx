@@ -51,6 +51,7 @@ export default React.memo(function CardSlider({ data, title }) {
   );
 });
 const Container = styled.div`
+  background-color: red;
   gap: 1rem;
   position: relative;
   padding: 2rem 0;
