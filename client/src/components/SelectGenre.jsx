@@ -7,27 +7,14 @@ export default function SelectGenre({ genres, type }) {
   return (
     <Select
       className="flex"
-<<<<<<< HEAD:netflix-ui/src/components/SelectGenre.jsx
-      // onChange={(e) => {
-      //   dispatch(
-      //     fetchDataByGenre({
-      //       genres,
-      //       genre: e.target.value,
-      //       type,
-      //     })
-      //   );
-      // }}
-=======
       onChange={(e) => {
-        dispatch(
-          // fetchDataByGenre({
-          //   genres,
-          //   genre: e.target.value,
-          //   type,
-          // })
-        );
+        dispatch();
+        // fetchDataByGenre({
+        //   genres,
+        //   genre: e.target.value,
+        //   type,
+        // })
       }}
->>>>>>> d3b9c48 (folder structure updated):client/src/components/SelectGenre.jsx
     >
       {genres.map((genre) => {
         return (

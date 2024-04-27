@@ -2,7 +2,10 @@ import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import Card from "./Card";
+
 export default React.memo(function CardSlider({ data, title }) {
+  // console.log(data);
+
   const listRef = useRef();
   const [sliderPosition, setSliderPosition] = useState(0);
   const [showControls, setShowControls] = useState(false);
@@ -36,7 +39,7 @@ export default React.memo(function CardSlider({ data, title }) {
         </div>
         <div className="slider flex" ref={listRef}>
           {data.map((movie, index) => {
-            return <Card movieData={movie} index={index} key={movie.id} />;
+            return <Card movieData={movie} key={movie.id} index={index} />;
           })}
         </div>
         <div
@@ -51,7 +54,7 @@ export default React.memo(function CardSlider({ data, title }) {
   );
 });
 const Container = styled.div`
-  background-color: red;
+  background-color: black;
   gap: 1rem;
   position: relative;
   padding: 2rem 0;

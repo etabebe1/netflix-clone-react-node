@@ -2,11 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import CardSlider from "./CardSlider";
 
-
 export default function Slider({ movies }) {
   const getMoviesFromRange = (from, to) => {
     return movies.slice(from, to);
   };
+
+  // console.log(getMoviesFromRange(1, 10));
   return (
     <Container>
       <CardSlider data={getMoviesFromRange(0, 10)} title="Trending Now" />

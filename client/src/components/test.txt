@@ -1,0 +1,127 @@
+  {isHovered && (
+        <div className="hover">
+          <div className="image-video-container">
+            <img
+              src={`https://image.tmdb.org/t/p/w500${movieData.image}`}
+              alt="card"
+              onClick={() => navigate("/player")}
+            />
+            {/* <video
+              src={video}
+              autoPlay={true}
+              loop
+              muted
+              onClick={() => navigate("/player")}
+            /> */}
+          </div>
+          <div className="info-container flex column">
+            <h3 className="name" onClick={() => navigate("/player")}>
+              {movieData.name}
+            </h3>
+            <div className="icons flex j-between">
+              <div className="controls flex">
+                <IoPlayCircleSharp
+                  title="Play"
+                  onClick={() => navigate("/player")}
+                />
+                <RiThumbUpFill title="Like" />
+                <RiThumbDownFill title="Dislike" />
+                {isLiked ? (
+                  <BsCheck
+                    title="Remove from List"
+                    // onClick={() =>
+                    //   dispatch(
+                    //     removeMovieFromLiked({ movieId: movieData.id, email })
+                    //   )
+                    // }
+                  />
+                ) : (
+                  <AiOutlinePlus title="Add to my list" onClick={addToList} />
+                )}
+              </div>
+              <div className="info">
+                <BiChevronDown title="More Info" />
+              </div>
+            </div>
+            <div className="genres flex">
+              <ul className="flex">
+                {movieData.genres.map((genre) => (
+                  <li>{genre}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      )}
+      
+
+
+
+          <Container
+      // key={index + 1}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+  height: 10rem;
+      <img
+        src={`https://image.tmdb.org/t/p/w500${movieData.image}`}
+        alt="card"
+        onClick={() => navigate("/player")}
+      />
+
+      {isHovered && (
+        <div className="hover">
+          <div className="image-video-container">
+            <img
+              src={`https://image.tmdb.org/t/p/w500${movieData.image}`}
+              alt="card"
+              onClick={() => navigate("/player")}
+            />
+            {/* <video
+              src={video}
+              autoPlay={true}
+              loop
+              muted
+              onClick={() => navigate("/player")}
+            /> */}
+          </div>
+          <div className="info-container flex column">
+            <h3 className="name" onClick={() => navigate("/player")}>
+              {movieData.name}
+            </h3>
+            <div className="icons flex j-between">
+              <div className="controls flex">
+                <IoPlayCircleSharp
+                  title="Play"
+                  onClick={() => navigate("/player")}
+                />
+                <RiThumbUpFill title="Like" />
+                <RiThumbDownFill title="Dislike" />
+                {isLiked ? (
+                  <BsCheck
+                    title="Remove from List"
+                    // onClick={() =>
+                    //   dispatch(
+                    //     removeMovieFromLiked({ movieId: movieData.id, email })
+                    //   )
+                    // }
+                  />
+                ) : (
+                  <AiOutlinePlus title="Add to my list" onClick={addToList} />
+                )}
+              </div>
+              <div className="info">
+                <BiChevronDown title="More Info" />
+              </div>
+            </div>
+            <div className="genres flex">
+              <ul className="flex">
+                {movieData.genres.map((genre) => (
+                  <li>{genre}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      )}
+    </Container>

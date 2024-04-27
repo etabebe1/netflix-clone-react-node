@@ -8,11 +8,10 @@ import { onAuthStateChanged } from "firebase/auth";
 import { firebaseAuth } from "../utils/firebase-config";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-// import { fetchMovies, getGenres } from "../store";
+import { fetchMovies, getGenres } from "../redux/store";
 import { FaPlay } from "react-icons/fa";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import Slider from "../components/Slider";
-
 
 function Netflix() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -24,19 +23,13 @@ function Netflix() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // dispatch(getGenres());
+    dispatch(getGenres());
   }, []);
 
   useEffect(() => {
-<<<<<<< HEAD:netflix-ui/src/pages/Netflix.jsx
-    // if (genresLoaded) {
-    //   dispatch(fetchMovies({ genres, type: "all" }));
-    // }
-=======
     if (genresLoaded) {
-      // dispatch(fetchMovies({ genres, type: "all" }));
+      dispatch(fetchMovies({ genres, type: "all" }));
     }
->>>>>>> d3b9c48 (folder structure updated):client/src/pages/Netflix.jsx
   }, [genresLoaded]);
 
   onAuthStateChanged(firebaseAuth, (currentUser) => {
@@ -82,7 +75,7 @@ function Netflix() {
 }
 
 const Container = styled.div`
-  background-color: red;
+  /* background-color: black; */
   .hero {
     position: relative;
     .background-image {
