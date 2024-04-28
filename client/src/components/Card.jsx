@@ -10,10 +10,9 @@ import axios from "axios";
 import { onAuthStateChanged } from "firebase/auth";
 import { firebaseAuth } from "../utils/firebase-config";
 import { useDispatch } from "react-redux";
-// import { removeMovieFromLiked } from "../store";
+import { removeMovieFromLiked } from "../redux/store";
 // import video from "../assets/video.mp4";
 // import video from "../assets/video.mp4";
-
 
 export default React.memo(function Card({ movieData, index, isLiked = false }) {
   const navigate = useNavigate();
@@ -38,16 +37,17 @@ export default React.memo(function Card({ movieData, index, isLiked = false }) {
     }
   };
 
+  // console.log(movieData);
+
   return (
     <Container
-      key={index} // This key is superfluous as Container isn't iterated.
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <img
         src={`https://image.tmdb.org/t/p/w500${movieData.image}`}
         alt="card"
-        onClick={() => navigate("/details")}
+        onClick={() => navigate("/details", { state: { movieData } })}
       />
 
       {isHovered && (
@@ -56,29 +56,32 @@ export default React.memo(function Card({ movieData, index, isLiked = false }) {
             <img
               src={`https://image.tmdb.org/t/p/w500${movieData.image}`}
               alt="card"
-              onClick={() => navigate("/player")}
+              onClick={() => navigate("/details", { state: { movieData } })}
             />
           </div>
           <div className="info-container flex column">
-            <h3 className="name" onClick={() => navigate("/player")}>
+            <h3
+              className="name"
+              onClick={() => navigate("/details", { state: { movieData } })}
+            >
               {movieData.name}
             </h3>
             <div className="icons flex j-between">
               <div className="controls flex">
                 <IoPlayCircleSharp
                   title="Play"
-                  onClick={() => navigate("/details")}
+                  onClick={() => navigate("/details", { state: { movieData } })}
                 />
                 <RiThumbUpFill title="Like" />
                 <RiThumbDownFill title="Dislike" />
                 {isLiked ? (
                   <BsCheck
                     title="Remove from List"
-                    // onClick={() =>
-                    //   dispatch(
-                    //     removeMovieFromLiked({ movieId: movieData.id, email })
-                    //   )
-                    // }
+                    onClick={() =>
+                      dispatch(
+                        removeMovieFromLiked({ movieId: movieData.id, email })
+                      )
+                    }
                   />
                 ) : (
                   <AiOutlinePlus title="Add to my list" onClick={addToList} />
@@ -90,8 +93,8 @@ export default React.memo(function Card({ movieData, index, isLiked = false }) {
             </div>
             <div className="genres flex">
               <ul className="flex">
-                {movieData.genres.map((genre, genreIndex) => (
-                  <li key={genreIndex}>{genre}</li>
+                {movieData.genres.map((genre, index) => (
+                  <li key={index + 1}>{genre}</li>
                 ))}
               </ul>
             </div>
