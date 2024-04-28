@@ -14,13 +14,12 @@ import { useDispatch } from "react-redux";
 // import video from "../assets/video.mp4";
 // import video from "../assets/video.mp4";
 
-export default React.memo(function Card({ movieData, isLiked = false }) {
+
+export default React.memo(function Card({ movieData, index, isLiked = false }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [isHovered, setIsHovered] = useState(false);
   const [email, setEmail] = useState(undefined);
-
-  // console.log(movieData);
 
   onAuthStateChanged(firebaseAuth, (currentUser) => {
     if (currentUser) {
@@ -40,43 +39,70 @@ export default React.memo(function Card({ movieData, isLiked = false }) {
   };
 
   return (
-    <Container>
+    <Container
+      key={index} // This key is superfluous as Container isn't iterated.
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <img
         src={`https://image.tmdb.org/t/p/w500${movieData.image}`}
         alt="card"
-        onClick={() => navigate("/player")}
+        onClick={() => navigate("/details")}
       />
+
+      {isHovered && (
+        <div className="hover">
+          <div className="image-video-container">
+            <img
+              src={`https://image.tmdb.org/t/p/w500${movieData.image}`}
+              alt="card"
+              onClick={() => navigate("/player")}
+            />
+          </div>
+          <div className="info-container flex column">
+            <h3 className="name" onClick={() => navigate("/player")}>
+              {movieData.name}
+            </h3>
+            <div className="icons flex j-between">
+              <div className="controls flex">
+                <IoPlayCircleSharp
+                  title="Play"
+                  onClick={() => navigate("/details")}
+                />
+                <RiThumbUpFill title="Like" />
+                <RiThumbDownFill title="Dislike" />
+                {isLiked ? (
+                  <BsCheck
+                    title="Remove from List"
+                    // onClick={() =>
+                    //   dispatch(
+                    //     removeMovieFromLiked({ movieId: movieData.id, email })
+                    //   )
+                    // }
+                  />
+                ) : (
+                  <AiOutlinePlus title="Add to my list" onClick={addToList} />
+                )}
+              </div>
+              <div className="info">
+                <BiChevronDown title="More Info" />
+              </div>
+            </div>
+            <div className="genres flex">
+              <ul className="flex">
+                {movieData.genres.map((genre, genreIndex) => (
+                  <li key={genreIndex}>{genre}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      )}
     </Container>
   );
 });
 
 const Container = styled.div`
-  max-width: 230px;
-  width: 230px;
-  height: 100%;
-  cursor: pointer;
-  position: relative;
-  img {
-    border-radius: 0.2rem;
-    width: 100%;
-    height: 100%;
-    z-index: 10;
-  }
-  .hover {
-    z-index: 99;
-    height: max-content;
-    width: 20rem;
-    position: absolute;
-    top: -18vh;
-    left: 0;
-    border-radius: 0.3rem;
-    box-shadow: rgba(0, 0, 0, 0.75) 0px 3px 10px;
-    background-color: #181818;
-    transition: 0.3s ease-in-out;
-  }
-`;
-
-/* const Container = styled.div`
   max-width: 230px;
   width: 230px;
   height: 100%;
@@ -152,4 +178,3 @@ const Container = styled.div`
     }
   }
 `;
- */
