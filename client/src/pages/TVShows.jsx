@@ -6,7 +6,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { firebaseAuth } from "../utils/firebase-config";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-// import { fetchMovies, getGenres } from "../store";
+import { fetchMovies, getGenres } from "../redux/store";
 import SelectGenre from "../components/SelectGenre";
 import Slider from "../components/Slider";
 
@@ -21,14 +21,14 @@ function TVShows() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // if (!genres.length) dispatch(getGenres());
+    if (!genres.length) dispatch(getGenres());
   }, []);
 
   useEffect(() => {
     if (genresLoaded) {
-      // dispatch(fetchMovies({ genres, type: "tv" }));
+      dispatch(fetchMovies({ genres, type: "tv" }));
     }
-  }, [genresLoaded]);
+  }, [dispatch, genres, genresLoaded]);
 
   const [user, setUser] = useState(undefined);
 

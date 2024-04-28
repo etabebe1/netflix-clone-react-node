@@ -24,13 +24,13 @@ function Netflix() {
 
   useEffect(() => {
     dispatch(getGenres());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (genresLoaded) {
       dispatch(fetchMovies({ genres, type: "all" }));
     }
-  }, [genresLoaded]);
+  }, [dispatch, genres, genresLoaded]);
 
   onAuthStateChanged(firebaseAuth, (currentUser) => {
     if (!currentUser) navigate("/login");
@@ -75,7 +75,7 @@ function Netflix() {
 }
 
 const Container = styled.div`
-  /* background-color: black; */
+  background-color: black;
   .hero {
     position: relative;
     .background-image {

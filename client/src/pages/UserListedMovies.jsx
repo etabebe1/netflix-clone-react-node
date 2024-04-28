@@ -6,7 +6,7 @@ import { firebaseAuth } from "../utils/firebase-config";
 import Card from "../components/Card";
 import styled from "styled-components";
 import Navbar from "../components/Navbar";
-// import { getUsersLikedMovies } from "../store";
+import { getUsersLikedMovies } from "../redux/store";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function UserListedMovies() {
@@ -23,9 +23,9 @@ export default function UserListedMovies() {
 
   useEffect(() => {
     if (email) {
-      // dispatch(getUsersLikedMovies(email));
+      dispatch(getUsersLikedMovies(email));
     }
-  }, [email]);
+  }, [dispatch, email]);
 
   window.onscroll = () => {
     setIsScrolled(window.pageYOffset === 0 ? false : true);

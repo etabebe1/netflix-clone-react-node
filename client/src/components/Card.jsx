@@ -11,8 +11,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { firebaseAuth } from "../utils/firebase-config";
 import { useDispatch } from "react-redux";
 import { removeMovieFromLiked } from "../redux/store";
-// import video from "../assets/video.mp4";
-// import video from "../assets/video.mp4";
+import video from "../assets/video.mp4";
 
 export default React.memo(function Card({ movieData, index, isLiked = false }) {
   const navigate = useNavigate();
@@ -47,22 +46,26 @@ export default React.memo(function Card({ movieData, index, isLiked = false }) {
       <img
         src={`https://image.tmdb.org/t/p/w500${movieData.image}`}
         alt="card"
-        onClick={() => navigate("/details", { state: { movieData } })}
+        onClick={() => navigate("/player")}
       />
 
       {isHovered && (
         <div className="hover">
           <div className="image-video-container">
-            <img
-              src={`https://image.tmdb.org/t/p/w500${movieData.image}`}
-              alt="card"
-              onClick={() => navigate("/details", { state: { movieData } })}
-            />
+            <iframe
+              width="100%"
+              height="100%"
+              src={`https://www.youtube.com/embed/HgaJW2I4Mbk?autoplay=1&loop=1&mute=1`}
+              title="YouTube video"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
           </div>
           <div className="info-container flex column">
             <h3
               className="name"
-              onClick={() => navigate("/details", { state: { movieData } })}
+              onClick={() => navigate("/player", { state: { movieData } })}
             >
               {movieData.name}
             </h3>
@@ -70,7 +73,7 @@ export default React.memo(function Card({ movieData, index, isLiked = false }) {
               <div className="controls flex">
                 <IoPlayCircleSharp
                   title="Play"
-                  onClick={() => navigate("/details", { state: { movieData } })}
+                  onClick={() => navigate("/player", { state: { movieData } })}
                 />
                 <RiThumbUpFill title="Like" />
                 <RiThumbDownFill title="Dislike" />
