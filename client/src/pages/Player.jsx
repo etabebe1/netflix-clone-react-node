@@ -1,12 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { BsArrowLeft } from "react-icons/bs";
-import { useNavigate, useLocation } from "react-router-dom";
-import video from "../assets/video.mp4";
+import { useNavigate } from "react-router-dom";
+// import video from "../assets/video.mp4";
 
 export default function Details() {
   const navigate = useNavigate();
-  const location = useLocation();
 
   return (
     <Container>
@@ -18,11 +17,11 @@ export default function Details() {
         <iframe
           width="100%"
           height="100%"
-          src={`https://www.youtube.com/embed/HgaJW2I4Mbk?autoplay=1&loop=1&mute=1`}
-          title="YouTube video"
-          frameBorder="0"
+          src="https://www.youtube.com/embed/gBHde1DVp5c?autoplay=1&loop=1&mute=1"
+          title="BEST UPCOMING MOVIES 2023 (Trailers)"
+          frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
+          allowfullscreen
         ></iframe>
       </div>
     </Container>

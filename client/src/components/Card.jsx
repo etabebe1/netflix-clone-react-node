@@ -11,7 +11,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { firebaseAuth } from "../utils/firebase-config";
 import { useDispatch } from "react-redux";
 import { removeMovieFromLiked } from "../redux/store";
-import video from "../assets/video.mp4";
+// import video from "../assets/video.mp4";
 
 export default React.memo(function Card({ movieData, index, isLiked = false }) {
   const navigate = useNavigate();
@@ -55,11 +55,11 @@ export default React.memo(function Card({ movieData, index, isLiked = false }) {
             <iframe
               width="100%"
               height="100%"
-              src={`https://www.youtube.com/embed/HgaJW2I4Mbk?autoplay=1&loop=1&mute=1`}
-              title="YouTube video"
-              frameBorder="0"
+              src="https://www.youtube.com/embed/gBHde1DVp5c?autoplay=1&loop=1&mute=1"
+              title="BEST UPCOMING MOVIES 2023 (Trailers)"
+              frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
+              allowfullscreen
             ></iframe>
           </div>
           <div className="info-container flex column">

@@ -8,13 +8,15 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-
 // FIXME: MONGO_URI
 mongoose
-  .connect("mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.2.4", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(
+    "mongodb+srv://etabebe1:7o9uQ5pQxa88UGAW@cluster0.5rhajka.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+  )
   .then(() => {
     console.log("DB Connetion Successfull");
   })

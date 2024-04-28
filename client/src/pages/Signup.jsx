@@ -1,9 +1,5 @@
-import {
-  createUserWithEmailAndPassword,
-  onAuthStateChanged,
-} from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import BackgroundImage from "../components/BackgroundImage";
 import Header from "../components/Header";
@@ -14,7 +10,6 @@ function Signup() {
     email: "",
     password: "",
   });
-  const navigate = useNavigate();
 
   const handleSignIn = async () => {
     const { email, password } = formValues;
@@ -26,7 +21,6 @@ function Signup() {
         console.log("User created successfully with email:", user.email);
       })
       .catch((error) => {
-        const errorCode = error.code;
         const errorMessage = error.message;
         // ..
         console.error("Error signing up:", errorMessage);
