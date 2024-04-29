@@ -1,5 +1,9 @@
 const User = require("../models/UserModel");
 
+module.exports.test = async (req, res) => {
+  res.send("<h1>Test Success</h1>");
+};
+
 module.exports.getLikedMovies = async (req, res) => {
   try {
     const { email } = req.params;
